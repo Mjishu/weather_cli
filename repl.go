@@ -84,5 +84,10 @@ func get_commands()map[string]cliCommands{
             description: "Shows the weather in x location | weather new york",
             callbackString: commandWeather,
         },
+        "uv":{
+            name:"uv",
+            description: "shows the uv data of current area, |uv new york",
+            callbackString: commandUv,
+        },
     }
 }
