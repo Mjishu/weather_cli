@@ -11,8 +11,8 @@ func commandHelp()error{
     fmt.Println()
     for _,cmd := range get_commands(){
         fmt.Printf("    -%s: %s\n", cmd.name,cmd.description)
+        fmt.Println()
     }
-    fmt.Println()
     return nil
 }
 
