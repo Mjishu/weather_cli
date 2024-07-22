@@ -70,9 +70,14 @@ func get_commands()map[string]cliCommands{
             callback: commandHelp,
         },
         "exit":{
-            name:"exit",
-            description:"Exits the program",
+            name:"exit", //add quit to this so either exit or quit works
+            description:"Exits the program, note: quit also works",
             callback: commandExit,
+        },
+        "quit":{
+            name:"quit",
+            description:"same function as exit",
+            callback:commandExit,
         },
         "weather":{
             name:"weather",
