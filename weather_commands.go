@@ -14,6 +14,10 @@ func commandUv(input string)error{
     if err != nil{
         return err
     }
+    if apiCall.Error.Code == 1006{
+        apiError()
+        return nil
+    }
     fmt.Println()
     fmt.Println("           Location")
     fmt.Println(strings.Repeat("-",30))
@@ -27,11 +31,15 @@ func commandUv(input string)error{
     return nil
 }
 
-func commandWeather(input string)error{ //So do i just call weather api here instead then?
+func commandWeather(input string)error{ //So do i just call weather api here instead then
     fmt.Println()
     apiCall,err := apiCall("current.json", input)
     if err != nil{
         return err
+    }
+    if apiCall.Error.Code == 1006{
+        apiError()
+        return nil
     }
     fmt.Println("           Location")
     fmt.Println(strings.Repeat("-",30))
@@ -74,6 +82,12 @@ type apiResponse struct{
         Code int `json:"code"`
         Message string `json:"message"`
     }`json:"error"`
+}
+
+func apiError(){
+    fmt.Println(strings.Repeat("-",30))
+    fmt.Println("City does not seem to exist,\nmaybe check your spelling")
+    fmt.Println(strings.Repeat("-",30))
 }
 
 func apiCall(path, location string)(*apiResponse, error){ 
